@@ -1,0 +1,30 @@
+<div class="container-fluid">
+
+    <div class="pt-3 mb-5">
+        <h3>Omborxonaga mahsulot kirgizish</h3>
+        <hr class="my-0">
+    </div>
+
+
+    <form class="w-100" [formGroup]="formList" (ngSubmit)="save()">
+        <ul class="list-group" formArrayName="data">
+            <ng-container *ngFor="let item of product; let i = index">
+                <li class="list-group-item">
+                    <div class="row w-100">
+                        <div class="col-6 col-sm-6 col-md-4">{{ i+1 + ' ' + item.name }}</div>
+                        <div class="col-6 col-sm-6 col-md-4">{{ item.count + ' ' + item.unit_name }}</div>
+                        <div class="col-sm-12 col-md-4 mt-2 mt-lg-0" [formGroupName]="i">
+                            <input type="number" formControlName="count" [value]="formList.value.data[i]['count']" min="0" [max]="item.count" class="form-control d-inline" style="width: 90px;">
+                            <button (click)="addCount(i)" type="button" class="btn btn-dark mx-2"><i class="fa fa-plus"></i></button>
+                            <button (click)="removeCount(i)" type="button" class="btn btn-light btn-outline-dark"><i class="fa fa-minus"></i></button>
+                        </div>
+                    </div>
+                </li>
+            </ng-container>
+        </ul>
+        <div class="text-end my-3">
+            <button type="submit" class="btn btn-success">Saqlash</button>
+        </div>
+    </form>
+
+</div>

@@ -1,0 +1,62 @@
+<div class="container-fluid">
+
+    <div class="pt-3 mb-5">
+        <div class="d-flex justify-content-between align-items-center">
+            <h3 class="mb-0">Mahsulotlar</h3>
+            <button data-mdb-toggle="modal" data-mdb-target="#addProduct" class="btn btn-primary btn-sm" type="button"><i class="fa fa-plus"></i></button>
+        </div>
+        <hr class="my-0">
+    </div>
+
+    <form class="mb-4" [formGroup]="filterForm" (submit)="send()">
+        <div class="d-flex ms-auto">
+            <select formControlName="product_id" class="form-select">
+                <option value="0">Mahsulotlar</option>
+                <option *ngFor="let item of product" [value]="item.id">{{ item.name }}</option>
+            </select>
+            <select formControlName="group_id" class="form-select mx-2">
+                <option value="0">Guruhlar</option>
+                <option *ngFor="let item of group" [value]="item.id">{{ item.name }}</option>
+            </select>
+            <input type="datetime-local" formControlName="start_date" class="form-control">
+            <input type="datetime-local" formControlName="end_date" class="form-control mx-2">
+            <button type="submit" class="btn btn-dark me-2">Filter</button>
+            <button type="reset" (click)="load()" class="btn">Tozalash</button>
+        </div>
+    </form>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover border mb-0">
+            <thead>
+                <tr>
+                    <th>№</th>
+                    <th>Nomi</th>
+                    <th>Guruhi</th>
+                    <th>Miqdori</th>
+                    <th>Birligi</th>
+                    <th>Sana</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let item of action; let i = index">
+                    <tr>
+                        <td>{{ i + 1 }}</td>
+                        <td>
+                            <ng-container *ngIf="item.count > 0">
+                                <i class="fa fa-arrow-down text-success"></i>
+                            </ng-container>
+                            <ng-container *ngIf="item.count < 0">
+                                <i class="fa fa-arrow-up text-danger"></i>
+                            </ng-container>
+                            {{ item.name }}
+                        </td>
+                        <td>{{ item.group_name }}</td>
+                        <td>{{ item.count }}</td>
+                        <td>{{ item.unit_name }}</td>
+                        <td>{{ item.date | date:'dd.MM.YYYY  HH:mm' }}</td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
+    </div>
+</div>

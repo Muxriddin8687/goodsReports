@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+    <div class="container-fluid">
+
+        <button type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+            class="navbar-toggler">
+            <i class="fa fa-bars"></i>
+        </button>
+
+        <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="dashboard" routerLinkActive="active">
+                        Dashboard
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="report" routerLinkActive="active">
+                        Hisobot
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="product" routerLinkActive="active">
+                        Mahsulotlar
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="unit" routerLinkActive="active">
+                        Qo'shimcha
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="arriv" routerLinkActive="active">
+                        Keldi
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="out" routerLinkActive="active">
+                        Ketdi
+                    </a>
+                </li>
+
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a routerLink="main" class="nav-link text-white" (click)="logout()">
+                        <i class="fa-solid fa-right-from-bracket me-1"></i>
+                        Chiqish
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>

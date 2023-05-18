@@ -1,0 +1,30 @@
+<div class="container-fluid">
+
+    <div class="pt-3 mb-5">
+        <h3>Omborxona</h3>
+        <hr class="my-0">
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover border mb-0">
+            <thead>
+                <tr>
+                    <th>№</th>
+                    <th>Nomi</th>
+                    <th>Guruhi</th>
+                    <th>Soni</th>
+                    <th>Birligi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of product; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td [ngClass]="{'text-dark': item.count > 10, 'text-warning': item.count < 10 && item.count > 4, 'text-danger': item.count < 5 }" >{{ item.name }}</td>
+                    <td>{{ item.group_name }}</td>
+                    <td>{{ item.count }}</td>
+                    <td>{{ item.unit_name }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

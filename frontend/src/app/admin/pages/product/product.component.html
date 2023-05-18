@@ -1,0 +1,100 @@
+<div class="container-fluid">
+
+    <div class="pt-3 mb-5">
+        <div class="d-flex justify-content-between align-items-center">
+            <h3 class="mb-0">Mahsulotlar</h3>
+            <button data-mdb-toggle="modal" data-mdb-target="#addProduct" class="btn btn-primary btn-sm" type="button"><i class="fa fa-plus"></i></button>
+        </div>
+        <hr class="my-0">
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover border mb-0">
+            <thead>
+                <tr>
+                    <th>№</th>
+                    <th>Nomi</th>
+                    <th>Guruhi</th>
+                    <th>Birligi</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of product; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.group_name }}</td>
+                    <td>{{ item.unit_name }}</td>
+                    <td class="text-end">
+                        <button (click)="editProduct(item.id)" data-mdb-toggle="modal" data-mdb-target="#updateProduct" type="button" class="btn btn-warning btn-sm me-2">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                        <button (click)="deleteProduct(item.id)" type="button" class="btn btn-danger btn-sm">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<!-- add modal -->
+<div class="modal fade" id="addProduct" tabindex="-1" aria-labelledby="addProductLabel" data-mdb-backdrop="static"
+    data-mdb-keyboard="true" aria-hidden="true">
+    <div class="modal-dialog">
+        <form [formGroup]="addForm" (ngSubmit)="send()">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mx-auto" id="addProductLabel">Mahsulot qo'shish</h5>
+                </div>
+                <div class="modal-body">
+                    <input type="text" [autofocus]="true" formControlName="name" placeholder="Nomi" class="form-control mb-4" required minlength="3">
+                    <select formControlName="group_id" class="form-select mb-4">
+                        <option value="0" selected disabled>Guruhlar</option>
+                        <option *ngFor="let item of group" [value]="item.id">{{ item.name }}</option>
+                    </select>
+                    <select formControlName="unit_id" class="form-select">
+                        <option value="0" selected disabled>Birliklar</option>
+                        <option *ngFor="let item of unit" [value]="item.id">{{ item.name }}</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-warning" data-mdb-dismiss="modal">Bekor qilish</button>
+                    <button data-mdb-dismiss="modal" type="submit" [disabled]="addForm.invalid" class="btn btn-primary">Saqlash</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- edit modal -->
+<div class="modal fade" id="updateProduct" tabindex="-1" aria-labelledby="updateProductLabel" data-mdb-backdrop="static"
+    data-mdb-keyboard="true" aria-hidden="true">
+    <div class="modal-dialog">
+        <form [formGroup]="addForm" (ngSubmit)="updateProduct()">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mx-auto" id="updateProductLabel">Mahsulotni o'zgartirish</h5>
+                </div>
+                <div class="modal-body">
+                    <input type="text" [autofocus]="true" formControlName="name" placeholder="Nomi" class="form-control mb-4" required minlength="3">
+                    <select formControlName="group_id" class="form-select mb-4">
+                        <option value="0" selected disabled>Guruhlar</option>
+                        <option *ngFor="let item of group" [value]="item.id">{{ item.name }}</option>
+                    </select>
+                    <select formControlName="unit_id" class="form-select">
+                        <option value="0" selected disabled>Birliklar</option>
+                        <option *ngFor="let item of unit" [value]="item.id">{{ item.name }}</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-warning" data-mdb-dismiss="modal">Bekor qilish</button>
+                    <button data-mdb-dismiss="modal" type="submit" [disabled]="addForm.invalid" class="btn btn-primary">Saqlash</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
